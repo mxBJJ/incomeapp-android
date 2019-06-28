@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="backgroundApp">#86339F</color>
+    <color name="indicatorOff">#56126F</color>
+    <color name="positive">#10A81C</color>
+    <color name="splashBackground">#5B3BA2</color>
+
+</resources>

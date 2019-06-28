@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "229810494708",
+    "firebase_url": "https://incomeapp-14fa1.firebaseio.com",
+    "project_id": "incomeapp-14fa1",
+    "storage_bucket": "incomeapp-14fa1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:229810494708:android:cbb1c107366732d7",
+        "android_client_info": {
+          "package_name": "com.example.incomeapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "229810494708-rcg67c04pkj91p3akskgr0597qhqs3gs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.incomeapp",
+            "certificate_hash": "7a7d181105b4b4d7830942b9f4ad4ead0e38753c"
+          }
+        },
+        {
+          "client_id": "229810494708-8ne8k878527do95fm286n0up6qfondg4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxXwmz7vyZ3qo4FQ1fJjHv46-TGMlC9SE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "229810494708-8ne8k878527do95fm286n0up6qfondg4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

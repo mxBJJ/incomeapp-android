@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_centerVertical="true"
+    android:layout_height="95dp"
+    android:layout_marginLeft="32dp"
+    android:layout_marginRight="32dp"
+    android:layout_marginTop="16dp"
+    android:elevation="5sp">
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="16dp"
+        android:text="TextView"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"/>
+
+    <TextView
+        android:id="@+id/data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginLeft="16dp"
+        android:textSize="14dp"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="35dp"
+        android:layout_marginRight="16dp"
+        android:text="TextView"/>
+
+    <TextView
+        android:id="@+id/value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:textSize="16dp"
+        android:textColor="@android:color/holo_green_dark"
+        android:layout_marginTop="35dp"
+        android:textStyle="bold"
+        android:layout_marginRight="16dp"
+        android:text="TextView"/>
+
+    <TextView
+        android:id="@+id/category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14dp"
+        android:layout_marginTop="60dp"
+        android:textStyle="bold"
+        android:textColor="@android:color/darker_gray"
+        android:text="TextView"
+        android:layout_marginLeft="16dp"/>
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">IncomeApp</string>
+    <string name="cria_sua_conta">Crie sua conta grátis</string>
+    <string name="join_us">Junte-se a várias pessoas que já estão monitorando gastos com este aplicativo.</string>
+    <string name="signup">CADASTRE-SE</string>
+    <string name="create_account">Cria sua conta grátis</string>
+    <string name="join">CADASTRAR</string>
+    <string name="use_terms">Termos de uso</string>
+    <string name="login">ENTRAR</string>
+    <string name="signup_title">Acesse sua conta</string>
+    <string name="title_activity_home">HomeActivity</string>
+</resources>
