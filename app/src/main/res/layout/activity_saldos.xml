@@ -18,10 +18,10 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:layout_width="237dp"
+            android:layout_width="wrap_content"
             android:layout_height="93dp"
             android:layout_marginTop="20dp"
-            android:paddingLeft="160dp"
+            android:paddingLeft="80dp"
             android:paddingTop="35dp"
             android:text="R$"
             android:textColor="@android:color/white"
@@ -34,14 +34,22 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginRight="32dp"
-            android:textCursorDrawable="@android:color/white"
             android:layout_weight="1"
-            android:text="0.00"
+            android:focusable="true"
+            android:focusedByDefault="true"
             android:inputType="numberDecimal"
+            android:text="0.00"
             android:textAlignment="textEnd"
             android:textColor="@android:color/white"
+            android:textCursorDrawable="@android:color/white"
             android:textSize="36sp"
-            android:textStyle="bold" />
+            android:textStyle="bold">
+
+            <requestFocus />
+
+        </EditText>
+
+
     </LinearLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -60,9 +68,9 @@
             android:id="@+id/editDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="Data"
             android:inputType="date"
-            android:singleLine="true"
-            android:hint="Data" />
+            android:singleLine="true" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -80,8 +88,8 @@
             android:id="@+id/editDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:hint="Descrição" />
+            android:hint="Descrição"
+            android:singleLine="true" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -100,8 +108,8 @@
             android:id="@+id/editCategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:hint="Categoria" />
+            android:hint="Categoria"
+            android:singleLine="true" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -109,12 +117,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="130dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="72dp"
         android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:fab_colorNormal="@color/positive"
+        app:layout_constraintBottom_toTopOf="@+id/main_menu"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout3"
         app:srcCompat="@drawable/ic_check_black_24dp" />
 
     <ImageView
@@ -127,5 +139,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="16dp" />
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/main_menu"
+        android:layout_width="395dp"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,8 +3,14 @@ package com.example.incomeapp.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -15,6 +21,7 @@ import com.example.incomeapp.helper.Base64Custom;
 import com.example.incomeapp.helper.DateCustom;
 import com.example.incomeapp.model.Movimentacao;
 import com.example.incomeapp.model.Usuario;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,6 +41,8 @@ public class SaldosActivity extends AppCompatActivity {
     private DatabaseReference databaseReference = ConfigFirebase.getDatabaseReference();
     private Double receitaTotal;
     private Double receitaAtualizada;
+    private BottomNavigationView bottomNavigationView;
+
 
     @Override
     public void onBackPressed() {
@@ -57,10 +66,16 @@ public class SaldosActivity extends AppCompatActivity {
         fieldCategory = findViewById(R.id.editCategory);
         value = findViewById(R.id.editValue);
         save = findViewById(R.id.fabSaveIncome);
+        bottomNavigationView = findViewById(R.id.main_menu);
+
+        value.requestFocus();
 
         fieldDate.setText(DateCustom.currentDate());
-
         recuperarReceitaTotal();
+
+        value.requestFocus();
+        value.setSelection(0);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
 
 
         back.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +89,6 @@ public class SaldosActivity extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
 
                 if (!fieldDescription.getText().toString().isEmpty()) {
                     if (!fieldCategory.getText().toString().isEmpty()) {
@@ -106,6 +120,38 @@ public class SaldosActivity extends AppCompatActivity {
                 }
             }
         });
+
+
+        bottomNavigationView.setSelectedItemId(R.id.saldosItem);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+                switch (menuItem.getItemId()) {
+                    case R.id.homeItem:
+                        finish();
+                        startActivity(new Intent(SaldosActivity.this, HomeActivity.class));
+                        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+                        break;
+
+                    case R.id.despesaItem:
+                        finish();
+                        abrirDespesas();
+                        break;
+                }
+
+
+                return false;
+            }
+        });
+
+    }
+
+
+    public void abrirDespesas() {
+
+        startActivity(new Intent(SaldosActivity.this, DespesasActivity.class));
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
     }
 

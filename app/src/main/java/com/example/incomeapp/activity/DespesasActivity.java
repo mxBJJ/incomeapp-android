@@ -3,8 +3,11 @@ package com.example.incomeapp.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -15,6 +18,7 @@ import com.example.incomeapp.helper.Base64Custom;
 import com.example.incomeapp.helper.DateCustom;
 import com.example.incomeapp.model.Movimentacao;
 import com.example.incomeapp.model.Usuario;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,7 +37,7 @@ public class DespesasActivity extends AppCompatActivity {
     private DatabaseReference databaseReference = ConfigFirebase.getDatabaseReference();
     private Double despesaTotal;
     private Double despesaAtualizada;
-
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     public void onBackPressed() {
@@ -56,6 +60,12 @@ public class DespesasActivity extends AppCompatActivity {
         fieldCategory = findViewById(R.id.editCategory);
         value = findViewById(R.id.editValue);
         save = findViewById(R.id.fabSaveExpense);
+        bottomNavigationView = findViewById(R.id.main_menu);
+
+
+        value.requestFocus();
+        value.setSelection(0);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
 
         fieldDate.setText(DateCustom.currentDate());
 
@@ -101,8 +111,41 @@ public class DespesasActivity extends AppCompatActivity {
 
             }
         });
+
+
+        bottomNavigationView.setSelectedItemId(R.id.despesaItem);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+                switch (menuItem.getItemId()) {
+                    case R.id.homeItem:
+                        finish();
+                        startActivity(new Intent(DespesasActivity.this, HomeActivity.class));
+                        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+                        break;
+
+
+                    case R.id.saldosItem:
+                        finish();
+                        abrirSaldos();
+                        break;
+
+
+                }
+
+                return false;
+            }
+        });
+
     }
 
+
+    public void abrirSaldos() {
+        startActivity(new Intent(DespesasActivity.this, SaldosActivity.class));
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+
+    }
 
     public void recuperarDespesaTotal() {
 

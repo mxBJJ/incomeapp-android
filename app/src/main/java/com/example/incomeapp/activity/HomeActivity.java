@@ -30,6 +30,8 @@ import com.example.incomeapp.helper.Base64Custom;
 import com.example.incomeapp.model.Movimentacao;
 import com.example.incomeapp.model.Usuario;
 import com.github.clans.fab.FloatingActionButton;
+import com.google.android.material.bottomnavigation.BottomNavigationItemView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -66,6 +68,7 @@ public class HomeActivity extends AppCompatActivity {
     private ValueEventListener valueEventListenerMovimentacoes;
     private ProgressBar progressBar;
     private Movimentacao movimentacao;
+    private BottomNavigationView bottomNavigationView;
 
 
     @Override
@@ -132,18 +135,18 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         getSupportActionBar().setElevation(0);
 
-        abrirDespesas = findViewById(R.id.fab);
-        abrirSaldos = findViewById(R.id.fab2);
+//        abrirDespesas = findViewById(R.id.fab);
+//        abrirSaldos = findViewById(R.id.fab2);
         textWellcome = findViewById(R.id.textUserName);
         textFullValue = findViewById(R.id.textFullValue);
         recyclerView = findViewById(R.id.recyclerView);
         calendarView = findViewById(R.id.calendarView);
         progressBar = findViewById(R.id.progressBar);
+        bottomNavigationView = findViewById(R.id.main_menu);
+
+
         swipe();
         configCalendar();
-
-
-
 
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -154,20 +157,41 @@ public class HomeActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
 
-        abrirSaldos.setOnClickListener(new View.OnClickListener() {
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onClick(View view) {
-                abrirSaldos();
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+
+                    case R.id.saldosItem:
+                        abrirSaldos();
+                        break;
+
+                    case R.id.despesaItem:
+                        abrirDespesas();
+                        break;
+
+                }
+
+                return false;
             }
         });
 
 
-        abrirDespesas.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                abrirDespesas();
-            }
-        });
+//
+//        abrirSaldos.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                abrirSaldos();
+//            }
+//        });
+//
+//
+//        abrirDespesas.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                abrirDespesas();
+//            }
+//        });
 
 
     }
@@ -294,7 +318,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
-                int position  = viewHolder.getAdapterPosition();
+                int position = viewHolder.getAdapterPosition();
                 movimentacao = movimentacoes.get(position);
 
                 String idUser = Base64Custom.encodeBase64(firebaseAuth.getCurrentUser().getEmail());
@@ -329,13 +353,13 @@ public class HomeActivity extends AppCompatActivity {
         String idUser = Base64Custom.encodeBase64(firebaseAuth.getCurrentUser().getEmail());
         userRef = databaseReference.child("usuarios").child(idUser);
 
-        if(movimentacao.getTipo().equals("r")){
+        if (movimentacao.getTipo().equals("r")) {
             receitaTotal = receitaTotal - movimentacao.getValor();
             userRef.child("receitaTotal").setValue(receitaTotal);
 
         }
 
-        if(movimentacao.getTipo().equals("d")){
+        if (movimentacao.getTipo().equals("d")) {
             despesaTotal = despesaTotal - movimentacao.getValor();
             userRef.child("despesaTotal").setValue(despesaTotal);
         }
